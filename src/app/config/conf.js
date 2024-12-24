@@ -13,7 +13,9 @@ module.exports = {
   EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
   EPASSWORD_SUPPORT: process.env.EPASSWORD_SUPPORT,
   JWTSECRET: process.env.JWTSECRET,
+  FETCH_API: process.env.FETCH_API,
 
+  URL_EXTERNAL: "https://www.opportunity-web.com.br/Tracker",
   BCRYPTSALTS: 12,
   EXPJWT: 36000,
   API: "/api/v1",

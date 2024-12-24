@@ -4,6 +4,7 @@ const config = require("./src/app/config/conf");
 
 //routes imports
 const UserRoutes = require("./src/app/routes/UserRoutes");
+const DataRoutes = require("./src/app/routes/DataRoutes");
 
 const app = express();
 const PORT = "3000";
@@ -25,6 +26,7 @@ app.use(
 
 //routes
 app.use(`${config.API}/users`, UserRoutes);
+app.use(`${config.API}/data`, DataRoutes);
 
 app.listen(PORT, () => {
   console.log(`servidor ON em  http://localhost:${PORT}`);

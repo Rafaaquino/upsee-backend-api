@@ -33,8 +33,27 @@ module.exports = class RegisterUserController {
     const salt = await bcrypt.genSalt(config.BCRYPTSALTS);
     const passwordHash = await bcrypt.hash(password, salt);
 
+    //clienteID
+    const generateUniqueId = (() => {
+      let counter = 0; // Contador para o mesmo milissegundo
+
+      return () => {
+        const timestamp = Date.now(); // Obtem o timestamp atual em milissegundos
+        const processId = process.pid; // ID do processo atual
+        const uniqueId = `${timestamp}${processId}${counter++}`;
+
+        // Reseta o contador para o próximo milissegundo
+        if (counter > 9999) counter = 0;
+
+        return Number(uniqueId); // Retorna como número
+      };
+    })();
+
+    const clientID = generateUniqueId();
+
     // create user
     const user = new User({
+      client_id: clientID,
       name,
       email,
       password: passwordHash,
