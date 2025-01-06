@@ -1,6 +1,6 @@
 const axios = require("axios");
 const config = require("../../config/conf");
-const { fetchExternalData } = require("../../services/fetchService");
+const { fetchExternalData } = require("../../external/services/fetchService");
 
 const apiUrl = config.TESTE;
 
