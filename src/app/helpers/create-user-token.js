@@ -17,7 +17,12 @@ const createUserToken = async (user, req, res) => {
 
   res
     .status(200)
-    .json({ message: "Authenticated", token: token, userId: user._id });
+    .json({
+      message: "Authenticated",
+      token: token,
+      client_id: user.client_id,
+      userId: user._id,
+    });
 };
 
 module.exports = createUserToken;
