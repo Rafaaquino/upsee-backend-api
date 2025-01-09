@@ -1,12 +1,12 @@
 {
   "name": "upsee-backend-api-auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./app.js",
-    "start:dev": "nodemon --inspect ./app.js localhost 3000",
+    "start:prod": "cross-env NODE_ENV=production nodemon ./app.js",
+    "start:dev": "cross-env NODE_ENV=dev nodemon --inspect ./app.js localhost 3000",
     "doc": "node src/public/docs/swagger.js"
   },
   "dependencies": {
@@ -22,5 +22,8 @@
     "nodemailer": "^6.9.16",
     "nodemailer-express-handlebars": "^7.0.0",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

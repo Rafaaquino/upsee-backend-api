@@ -5,7 +5,7 @@ const config = require("../../config/conf");
 module.exports = class ResetPasswordController {
   static async resetPassword(req, res) {
     console.log(req.body);
-    const { newPassword, mathPassword } = req.body.newPass;
+    const { newPassword, mathPassword } = req.body;
     const email = req.body.email;
 
     if (!email) {

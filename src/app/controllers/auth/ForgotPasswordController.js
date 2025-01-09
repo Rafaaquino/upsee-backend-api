@@ -1,4 +1,3 @@
-const config = require("../../config/conf");
 const crypto = require("crypto");
 const transporter = require("../../helpers/mailer");
 const getEmailHTML = require("../../../views/recovery-template");
@@ -41,8 +40,8 @@ module.exports = class ForgotPasswordController {
 
     // Configurar o e-mail
     const mailOptions = {
-      from: config.EMAIL_RECOVERY,
-      bcc: config.EMAIL_RECOVERY,
+      from: process.env.EMAIL_RECOVERY,
+      bcc: process.env.EMAIL_RECOVERY,
       to: email,
       subject: "Recuperar Senha",
       html: html,

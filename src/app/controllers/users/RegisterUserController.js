@@ -1,7 +1,7 @@
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
-const config = require("../../config/conf");
 const createUserToken = require("../../helpers/create-user-token");
+const config = require("../../config/conf");
 
 module.exports = class RegisterUserController {
   static async register(req, res) {
@@ -30,7 +30,7 @@ module.exports = class RegisterUserController {
     }
 
     //cryptografia
-    const salt = await bcrypt.genSalt(config.BCRYPTSALTS);
+    const salt = await bcrypt.genSalt(config.BBCRYPTSALTS);
     const passwordHash = await bcrypt.hash(password, salt);
 
     //clienteID

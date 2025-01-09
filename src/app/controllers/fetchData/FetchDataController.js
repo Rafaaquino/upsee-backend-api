@@ -2,8 +2,6 @@ const axios = require("axios");
 const config = require("../../config/conf");
 const { fetchExternalData } = require("../../external/services/fetchService");
 
-const apiUrl = config.TESTE;
-
 module.exports = class DataController {
   static async fetchData(req, res) {
     console.log(req.url);
