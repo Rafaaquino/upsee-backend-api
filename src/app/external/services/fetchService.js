@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { formatApiData } = require("./formatService");
-const config = require("../../config/conf");
 
 /**
  * Função para buscar dados da API externa e formatá-los

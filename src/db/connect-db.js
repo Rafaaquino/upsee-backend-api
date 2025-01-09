@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const config = require("../app/config/conf");
 
 async function main() {
-  await mongoose.connect(config.MONGODB_URI_LOCAL);
+  await mongoose.connect(process.env.MONGODB_URI);
   console.log(`conectou ao banco!`);
 }
 
