@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const conf = require("../config/conf");
+const config = require("../config/conf");
 
 const createUserToken = async (user, req, res) => {
   const token = jwt.sign(
@@ -11,18 +11,16 @@ const createUserToken = async (user, req, res) => {
       company: user.company,
       role: user.role,
     },
-    conf.JWTSECRET,
-    { expiresIn: conf.EXPJWT }
+    process.env.JWTSECRET,
+    { expiresIn: config.EXPJWT }
   );
 
-  res
-    .status(200)
-    .json({
-      message: "Authenticated",
-      token: token,
-      client_id: user.client_id,
-      userId: user._id,
-    });
+  res.status(200).json({
+    message: "Authenticated",
+    token: token,
+    client_id: user.client_id,
+    userId: user._id,
+  });
 };
 
 module.exports = createUserToken;
