@@ -1,20 +1,5 @@
-require("dotenv").config({
-  path: process.env.NODE_ENV === "dev" ? ".env.dev" : ".env",
-});
-
 module.exports = {
-  MONGODB_URI: process.env.MONGODB_URI,
-  MONGODB_URI_LOCAL: process.env.MONGODB_URI_LOCAL,
-  MONGO_PASS: process.env.MONGO_PASS,
-  EMAIL: process.env.EMAIL,
-  EPASSWORD: process.env.EPASSWORD,
-  EMAIL_RECOVERY: process.env.EMAIL_RECOVERY,
-  EPASSWORD_RECOVERY: process.env.EPASSWORD_RECOVERY,
-  EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
-  EPASSWORD_SUPPORT: process.env.EPASSWORD_SUPPORT,
-  JWTSECRET: process.env.JWTSECRET,
-  FETCH_API: process.env.FETCH_API,
-
+  PORT_LOCAL: 3000,
   URL_EXTERNAL: "https://www.opportunity-web.com.br/Tracker",
   BCRYPTSALTS: 12,
   EXPJWT: 36000,
