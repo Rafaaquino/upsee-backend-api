@@ -5,24 +5,30 @@ const config = require("../../config/conf");
 
 module.exports = class RegisterUserController {
   static async register(req, res) {
-    const { name, email, password, company, role } = req.body;
+    const person = req.body;
+    console.log("person: ", person.profile);
 
-    if (!name) {
-      return res.status(422).json({ message: "Name is required" });
+    if (!person.profile.firstName) {
+      return res.status(422).json({ message: "First Name is required" });
     }
 
-    if (!email) {
+    if (!person.profile.lastName) {
+      return res.status(422).json({ message: "Last Name is required" });
+    }
+
+    if (!person.profile.email) {
       return res.status(422).json({ message: "Email is required" });
     }
 
-    if (!password) {
+    if (!person.password) {
       return res.status(422).json({ message: "Password is required" });
     }
 
-    if (!company) {
+    if (!person.company) {
       return res.status(422).json({ message: "Company is required" });
     }
 
+    const email = person.profile.email;
     const userExists = await User.findOne({ email: email });
 
     if (userExists) {
@@ -30,7 +36,8 @@ module.exports = class RegisterUserController {
     }
 
     //cryptografia
-    const salt = await bcrypt.genSalt(config.BBCRYPTSALTS);
+    const salt = await bcrypt.genSalt(config.BCRYPTSALTS);
+    const password = person.password;
     const passwordHash = await bcrypt.hash(password, salt);
 
     //clienteID
@@ -54,11 +61,27 @@ module.exports = class RegisterUserController {
     // create user
     const user = new User({
       client_id: clientID,
-      name,
-      email,
+      profile: {
+        firstName: person.profile.firstName,
+        lastName: person.profile.lastName,
+        email: person.profile.email,
+        dateOfBirth: person.profile.dateOfBirth,
+        address: {
+          street: person.profile.address.street,
+          city: person.profile.address.city,
+          state: person.profile.address.state,
+          country: person.profile.address.country,
+          postalCode: person.profile.address.postalCode,
+        },
+        contacts: {
+          homePhone: person.profile.contacts.homePhone,
+          mobilePhone: person.profile.contacts.mobilePhone,
+          workPhone: person.profile.contacts.workPhone,
+        },
+      },
       password: passwordHash,
-      company,
-      role,
+      company: person.company,
+      role: person.role,
     });
 
     try {

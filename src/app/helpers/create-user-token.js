@@ -6,8 +6,10 @@ const createUserToken = async (user, req, res) => {
     {
       id: user._id,
       client_id: user.client_id,
-      name: user.name,
-      email: user.email,
+      profile: {
+        firstName: user.name,
+        email: user.email,
+      },
       company: user.company,
       role: user.role,
     },
