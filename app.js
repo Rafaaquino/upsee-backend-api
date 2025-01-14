@@ -14,6 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, `.env.${env}`) });
 const UserRoutes = require("./src/app/routes/UserRoutes");
 const DataRoutes = require("./src/app/routes/DataRoutes");
 const ExternalRoutes = require("./src/app/external/routes/ExternalRoutes");
+const AuthRoutes = require("./src/app/routes/AuthRoutes");
 
 const app = express();
 const PORT = process.env.PORT || config.PORT_LOCAL;
@@ -35,8 +36,9 @@ app.use(
 );
 
 //routes
-app.use(`${config.API}/users`, UserRoutes);
+app.use(`${config.API}/user`, UserRoutes);
 app.use(`${config.API}/data`, DataRoutes);
+app.use(`${config.API}/auth`, AuthRoutes);
 app.use(`${config.API}/auth-external`, ExternalRoutes);
 
 app.listen(PORT, () => {

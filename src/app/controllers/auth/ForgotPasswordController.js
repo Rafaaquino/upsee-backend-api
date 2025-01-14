@@ -11,7 +11,7 @@ module.exports = class ForgotPasswordController {
       return res.status(422).json({ message: "Email is required" });
     }
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ "profile.email": email });
     console.log(user);
 
     if (!user) {
