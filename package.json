@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js",
     "start:prod": "cross-env NODE_ENV=production nodemon ./app.js",
     "start:dev": "cross-env NODE_ENV=dev nodemon --inspect ./app.js localhost 3000",
     "doc": "node src/public/docs/swagger.js"
