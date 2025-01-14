@@ -1,45 +1,28 @@
 const User = require("../../../models/User");
-const bcrypt = require("bcryptjs");
-const createUserToken = require("../../../helpers/create-user-token");
-
 module.exports = class signinController {
   static async signin(req, res) {
-    const { client_id, email, password } = req.body;
-
-    if (!email) {
-      return res.status(422).json({ message: "Email is required" });
-    }
+    const { client_id } = req.body;
 
     if (!client_id) {
       return res.status(422).json({ message: "Client ID is required" });
     }
 
-    if (!password) {
-      return res.status(422).json({ message: "Password is required" });
-    }
-
     // Verifica se usuario existe
 
     const user = await User.findOne({
-      email: email,
       client_id: client_id,
     }).select("+password");
 
     if (!user) {
-      return res
-        .status(422)
-        .json({
-          message: "There is no registered user with this clientID or email",
-        });
+      return res.status(422).json({
+        message: "There is no registered user with this clientID",
+      });
     }
 
-    //Bcrypt
-    const checkpassword = await bcrypt.compare(password, user.password);
-
-    if (!checkpassword) {
-      return res.status(422).json({ message: "Invalid password" });
+    try {
+      return res.status(200).json({ user: true });
+    } catch (error) {
+      return res.status(500).json({ message: "Internal server error", error });
     }
-
-    await createUserToken(user, req, res);
   }
 };
