@@ -12,7 +12,7 @@ module.exports = class CodePasswordController {
     }
 
     try {
-      const user = await User.findOne({ email: email }).select(
+      const user = await User.findOne({ "profile.email": email }).select(
         "+passwordResetToken passwordResetExp"
       );
 

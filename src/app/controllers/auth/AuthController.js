@@ -15,7 +15,10 @@ module.exports = class AuthController {
     }
 
     // Verifica se usuario existe
-    const user = await User.findOne({ email: email }).select("+password");
+    const user = await User.findOne({ "profile.email": email }).select(
+      "+password"
+    );
+    console.log("user: ", user);
 
     if (!user) {
       return res
