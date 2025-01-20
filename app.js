@@ -31,6 +31,7 @@ app.use(
       config.HOST_DEV,
       config.HOST_DEV_DASH,
       config.URL_EXTERNAL,
+      config.HOST_HEROKU,
     ],
   })
 );

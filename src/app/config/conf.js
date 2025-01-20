@@ -10,4 +10,5 @@ module.exports = {
   HOST_FRONT_DASH: "https://www.upsee.app.br",
   HOST_DEV: "http://localhost:4200",
   HOST_DEV_DASH: "http://localhost:4201",
+  HOST_HEROKU: "https://upsee-dashboard-7a08444e2431.herokuapp.com",
 };
