@@ -6,8 +6,9 @@ const getToken = require("../../helpers/get-token");
 module.exports = class EditUserController {
   static async editUser(req, res) {
     const { id } = req.params;
-    const data = req.body;
+    const profile = req.body;
 
+    console.log("data: ", profile);
     //check user exist
     const token = getToken(req);
     const user = await getUserByToken(token);
@@ -17,7 +18,7 @@ module.exports = class EditUserController {
     }
 
     try {
-      const updatedUser = await User.findOneAndUpdate({ _id: id }, data, {
+      const updatedUser = await User.findOneAndUpdate({ _id: id }, profile, {
         new: true,
       });
 
